@@ -22,14 +22,20 @@ def lambda_handler(event, context):
     channel = os.getenv("SLACK_CHANNEL")
     
     # result = SlackNotifier(token, channel).post(proverb_text)    
-    result = EchoJson(token, channel).do_echo(proverb['proverb'], proverb['who_said'])  
+    result = EchoJson(token, channel).do_echo(proverb['proverb'], proverb['who_said'])
     
+    """
     return {
         "statusCode": 200,
         "body": json.dumps({
             "message": f"{result.text}",
         })
-    }    
+    }
+    """
+    return {
+        "statusCode": 200,
+        "body": result.json()
+    }
     
 
 
